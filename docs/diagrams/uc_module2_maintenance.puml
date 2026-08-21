@@ -1,0 +1,27 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecaseBackgroundColor white
+skinparam actorStyle awesome
+
+rectangle "AIMOS Platform" {
+  rectangle "Module Gestion de la Maintenance" <<Module>> {
+    (Gérer les équipements\net les capteurs) as UC1
+    (Créer et affecter\nune intervention) as UC2
+    (Exécuter une intervention\navec checklist) as UC3
+    (Soumettre une demande\nd'intervention) as UC4
+    (Approuver / Rejeter\nune demande) as UC5
+  }
+}
+
+:Resp.\nmaintenance: as RM
+:Technicien: as TECH
+
+RM -- UC1
+RM -- UC2
+RM -- UC5
+TECH -- UC3
+TECH -- UC4
+RM -- UC4
+
+@enduml

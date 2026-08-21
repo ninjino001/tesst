@@ -1,0 +1,68 @@
+\documentclass{rapportENSIAS}
+
+% ==========================
+% Packages
+% ==========================
+\usepackage{lipsum}
+\usepackage{minted}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tgheros}
+\usepackage{tikz}
+
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+
+% Reduce vertical space before chapter titles
+\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+
+% ===== MASQUER TOUS LES NUMÉROS =====
+\captionsetup{labelformat=empty}         % Figures
+\captionsetup[table]{labelformat=empty}  % Tableaux
+
+\begin{document}
+
+% ==========================
+% Page de garde
+% ==========================
+\UE{Rapport de Stage de Fin d'Études}
+\sujet{\vspace{-0.3cm}\begin{center}\includegraphics[width=0.20\textwidth]{Logos/LogoAIMOS.png}\end{center}\vspace{-1.6cm}}
+\titre{\fontsize{18}{20}\selectfont AIMOS — Airport Intelligent Maintenance Operations System\\
+\rmfamily\mdseries Conception et développement d'une plateforme de maintenance intelligente pour les aéroports}
+\eleves{
+Oussama \textsc{AIT ELKABIR}\\
+}
+\encadrant{Mr. Ahmed BEKRI}
+\jury{Mr. Ahmed BEKRI \\ Pr. [Membre du jury]}
+\annee{2025-2026}
+
+\fairemarges
+\fairepagedegarde
+
+\input{sections/remerciements}
+\input{sections/resume}
+\input{sections/abstract}
+% ==========================
+\vspace{-1cm}
+\tabledematieres
+
+\input{sections/liste_abreviations}
+\input{sections/introduction_generale}
+\input{sections/chapitre1}
+\input{sections/chapitre2}
+\input{sections/chapitre3}
+\input{sections/chapitre4}
+\input{sections/conclusion_generale}
+
+\end{document}

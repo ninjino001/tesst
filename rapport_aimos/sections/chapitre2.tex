@@ -1,0 +1,104 @@
+\chapter{Présentation de l'organisme d'accueil}
+
+\section{Introduction}
+Ce chapitre est dédié à la présentation de l'organisme d'accueil dans lequel ce stage a été effectué. Il décrit l'ONDA, ses missions, son organisation, ainsi que l'écosystème informatique existant dans lequel s'intègre la plateforme AIMOS.
+
+\section{Présentation de l'ONDA}
+
+\subsection{Historique et statut}
+L'\textbf{ONDA} (Office National Des Aéroports) est un établissement public marocain à caractère industriel et commercial, créé en 1990 par le Dahir n° 1-89-237. Il est placé sous la tutelle du Ministère du Transport et de la Logistique.
+
+L'ONDA est né de la volonté de doter le Maroc d'un organisme spécialisé capable de gérer et de développer les infrastructures aéroportuaires du pays, dans un contexte de croissance du trafic aérien et de libéralisation du transport aérien.
+
+\subsection{Missions principales}
+L'ONDA assure plusieurs missions stratégiques :
+\begin{itemize}
+    \item La \textbf{gestion et l'exploitation} des aéroports du Royaume du Maroc ;
+    \item La \textbf{sécurité de la navigation aérienne} sur l'ensemble de l'espace aérien national ;
+    \item Le \textbf{développement des infrastructures} aéroportuaires pour accompagner la croissance du trafic ;
+    \item La \textbf{certification et le contrôle} de la conformité aux normes internationales (OACI, IATA) ;
+    \item La \textbf{formation} des personnels techniques de l'aviation civile via l'IFGEIA.
+\end{itemize}
+
+\subsection{Chiffres clés}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.40\textwidth}p{0.50\textwidth}@{}}
+\hline
+\textbf{Indicateur} & \textbf{Valeur} \\
+\hline
+Aéroports gérés & 25 aéroports \\
+\hline
+Passagers annuels & Plus de 27 millions \\
+\hline
+Effectif & Plus de 2 800 collaborateurs \\
+\hline
+Siège & Casablanca, Maroc \\
+\hline
+\end{tabular}
+\caption{Chiffres clés de l'ONDA}
+\end{table}
+
+\subsection{Organigramme}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figures/organigramme_onda.png}
+\caption{Organigramme de l'ONDA}
+\end{figure}
+
+\section{Présentation de l'aéroport Rabat-Salé}
+L'aéroport international Rabat-Salé est l'aéroport de la capitale administrative du Maroc. Il accueille un trafic national et international, avec un terminal principal desservant plusieurs destinations.
+
+Le stage s'est déroulé au sein de la \textbf{Direction Technique} de l'aéroport Rabat-Salé, en charge de la maintenance et de l'exploitation des équipements techniques de l'infrastructure.
+
+Les équipements gérés comprennent :
+\begin{itemize}
+    \item \textbf{HVAC} : Centrales de Traitement d'Air (CTA) et Pompes à Chaleur ;
+    \item \textbf{Énergie} : Convertisseurs de fréquence 400 Hz pour les aéronefs ;
+    \item \textbf{Bagages} : Tapis de livraison et systèmes de tri ;
+    \item \textbf{Transport vertical} : Ascenseurs et escalators ;
+    \item \textbf{Sûreté} : Scanners RX, EDS, portiques de détection ;
+    \item \textbf{Embarquement} : Passerelles télescopiques ;
+    \item \textbf{Accès} : Portes automatiques.
+\end{itemize}
+
+\section{Écosystème SI existant}
+L'ONDA dispose d'un écosystème informatique composé de plusieurs systèmes complémentaires :
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{0.22\textwidth}p{0.70\textwidth}@{}}
+\hline
+\textbf{Système} & \textbf{Rôle} \\
+\hline
+Oracle EBS & ERP pour la gestion financière, les achats et le stock de pièces détachées \\
+\hline
+HR Access & Gestion des ressources humaines (paie, congés, carrières) \\
+\hline
+GTB/GTC & Gestion Technique du Bâtiment : supervision technique des installations (HVAC, électricité, plomberie) \\
+\hline
+\textbf{AIMOS} & \textbf{Maintenance prédictive intelligente} — plateforme développée dans le cadre de ce stage \\
+\hline
+\end{tabular}
+\caption{Écosystème SI de l'ONDA}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/ecosysteme_si.png}
+\caption{Positionnement d'AIMOS dans l'écosystème SI de l'ONDA}
+\end{figure}
+
+\section{Positionnement d'AIMOS}
+AIMOS se positionne comme un \textbf{complément intelligent} aux systèmes existants. Là où la GTB/GTC assure la supervision en temps réel des installations, AIMOS apporte une couche d'\textbf{intelligence prédictive} et de \textbf{gestion structurée de la maintenance} :
+
+\begin{itemize}
+    \item La GTB/GTC fournit les données brutes des capteurs → AIMOS les analyse pour détecter des tendances et prédire des pannes ;
+    \item Oracle EBS gère le stock de pièces → AIMOS identifie les besoins en maintenance avant la panne ;
+    \item AIMOS centralise le cycle complet des interventions avec traçabilité, gammes de maintenance et affectation des techniciens.
+\end{itemize}
+
+\section{Conclusion}
+Ce chapitre a présenté l'ONDA, son organisation et l'environnement technique de l'aéroport Rabat-Salé. Le positionnement d'AIMOS dans l'écosystème SI existant a été clarifié. Le chapitre suivant aborde l'analyse des besoins et la conception de la plateforme.

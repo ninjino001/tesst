@@ -1,0 +1,29 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecaseBackgroundColor white
+skinparam actorStyle awesome
+
+rectangle "AIMOS Platform" {
+  rectangle "Module Surveillance & Alertes" <<Module>> {
+    (Générer une alerte\nautomatique) as UC1
+    (Consulter et traiter\nles alertes) as UC2
+    (Recevoir des notifications) as UC3
+    (Consulter le tableau\nde bord) as UC4
+  }
+}
+
+:Système: as SYS
+:Resp.\nmaintenance: as RM
+:Superviseur: as SUP
+
+SYS -- UC1
+UC1 ..> UC3 : <<include>>
+RM -- UC2
+RM -- UC3
+RM -- UC4
+SUP -- UC2
+SUP -- UC3
+SUP -- UC4
+
+@enduml

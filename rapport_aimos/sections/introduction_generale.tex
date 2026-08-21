@@ -1,0 +1,27 @@
+\chapter*{Introduction générale}
+\addcontentsline{toc}{chapter}{Introduction générale}
+
+Les aéroports constituent des infrastructures critiques où la disponibilité et la fiabilité des équipements techniques conditionnent directement la sécurité des passagers et la continuité du trafic aérien. La maintenance de ces équipements — systèmes de climatisation, passerelles d'embarquement, tapis de bagages, portes automatiques, convertisseurs de fréquence — représente un défi opérationnel majeur pour les gestionnaires aéroportuaires.
+
+\vspace{0.3cm}
+\noindent\textbf{Problématique.} Traditionnellement, la maintenance aéroportuaire repose sur des approches correctives (réparation après panne) ou préventives systématiques (interventions planifiées à intervalles fixes). Ces approches présentent des limites significatives : les pannes imprévues entraînent des arrêts coûteux et des perturbations du trafic, tandis que la maintenance systématique génère des interventions inutiles sur des équipements encore en bon état. Comment passer d'une maintenance réactive à une maintenance proactive et intelligente, capable d'anticiper les défaillances avant qu'elles ne surviennent ?
+
+\vspace{0.3cm}
+\noindent\textbf{Solution proposée.} Ce projet de stage, réalisé au sein de l'\textbf{ONDA} (Office National Des Aéroports), propose la conception et le développement de la plateforme \textbf{AIMOS} (Airport Intelligent Maintenance Operations System). Cette plateforme couvre :
+\begin{itemize}
+    \item La \textbf{gestion des équipements et des capteurs} : inventaire, suivi de l'état, configuration des seuils de surveillance ;
+    \item La \textbf{gestion des interventions} : planification, affectation, exécution avec gammes de maintenance, demandes d'intervention ;
+    \item La \textbf{surveillance et les alertes} : détection automatique des anomalies via les données capteurs, notifications en temps réel ;
+    \item La \textbf{maintenance prédictive} : module d'intelligence artificielle analysant les tendances des capteurs pour prédire les pannes et estimer la durée de vie restante des équipements.
+\end{itemize}
+
+\noindent L'architecture technique retenue repose sur un frontend React (Vite, CSS custom), un backend Django REST Framework, une base de données PostgreSQL, et une orchestration via Docker Compose. Le déploiement en production utilise Nginx comme reverse proxy et Gunicorn comme serveur d'application.
+
+\vspace{0.3cm}
+\noindent\textbf{Organisation du rapport.} Ce rapport s'articule en quatre chapitres :
+\begin{itemize}
+    \item Le \textbf{Chapitre 1} présente le contexte général du stage, la problématique, les objectifs et la méthodologie adoptée ;
+    \item Le \textbf{Chapitre 2} est dédié à la présentation de l'organisme d'accueil, l'ONDA, son écosystème SI et le positionnement d'AIMOS ;
+    \item Le \textbf{Chapitre 3} expose l'analyse des besoins et la conception : acteurs, cas d'utilisation, diagrammes de classes et architecture technique ;
+    \item Le \textbf{Chapitre 4} présente la réalisation de l'application, les technologies utilisées, les interfaces développées et le déploiement.
+\end{itemize}

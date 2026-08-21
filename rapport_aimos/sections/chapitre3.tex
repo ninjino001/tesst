@@ -1,0 +1,368 @@
+\chapter{Analyse et Conception}
+
+\section{Introduction}
+Ce chapitre présente l'analyse des besoins fonctionnels et non fonctionnels de la plateforme AIMOS, l'identification des acteurs, les diagrammes de cas d'utilisation par module, le diagramme de classes et l'architecture technique retenue.
+
+\section{Besoins fonctionnels}
+Les besoins fonctionnels de la plateforme sont regroupés par module :
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{0.28\textwidth}p{0.64\textwidth}@{}}
+\hline
+\textbf{Module} & \textbf{Besoins} \\
+\hline
+Administration & Authentification sécurisée, gestion des utilisateurs et des rôles, gestion du profil personnel \\
+\hline
+Gestion de la maintenance & CRUD équipements et capteurs, création et affectation des interventions, exécution avec checklist, demandes d'intervention \\
+\hline
+Surveillance \& Alertes & Génération automatique d'alertes lors du dépassement des seuils, notifications en temps réel, tableau de bord opérationnel \\
+\hline
+Maintenance prédictive & Analyse des tendances des capteurs, calcul du score de risque, estimation de la durée de vie restante (RUL), détection d'anomalies \\
+\hline
+\end{tabular}
+\caption{Besoins fonctionnels par module}
+\end{table}
+
+\section{Besoins non fonctionnels}
+\begin{itemize}
+    \item \textbf{Performance} : temps de réponse inférieur à 2 secondes pour les opérations courantes ;
+    \item \textbf{Sécurité} : authentification par session, contrôle d'accès par rôle (RBAC), mots de passe hachés ;
+    \item \textbf{Disponibilité} : déploiement conteneurisé permettant un redémarrage rapide ;
+    \item \textbf{Maintenabilité} : architecture modulaire (apps Django séparées), code documenté ;
+    \item \textbf{Portabilité} : application conteneurisée (Docker) déployable sur tout serveur Linux ;
+    \item \textbf{Multilingue} : interface disponible en français et en anglais.
+\end{itemize}
+
+\section{Identification des acteurs}
+La plateforme AIMOS définit quatre rôles principaux :
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.4}
+\begin{tabular}{@{}p{0.28\textwidth}p{0.64\textwidth}@{}}
+\hline
+\textbf{Acteur} & \textbf{Rôle dans la plateforme} \\
+\hline
+Administrateur & Gère les comptes utilisateurs, attribue les rôles, consulte le tableau de bord d'administration. \\
+\hline
+Superviseur & Supervise l'ensemble des opérations : équipements, interventions, alertes, prédictions IA, journal d'activité. Accès en lecture complète sans modification. \\
+\hline
+Responsable maintenance & Gère les équipements et capteurs, crée et affecte les interventions, traite les alertes et les demandes, consulte les prédictions IA. \\
+\hline
+Technicien & Exécute les interventions affectées (démarrage, checklist, clôture), consulte les équipements en lecture, soumet des demandes d'intervention. \\
+\hline
+\end{tabular}
+\caption{Les quatre acteurs de la plateforme AIMOS}
+\end{table}
+
+\noindent En complément, le \textbf{Système} agit comme acteur secondaire pour la génération automatique des alertes et le calcul des prédictions IA.
+
+\section{Diagrammes de cas d'utilisation}
+
+\subsection{Module Administration}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/uc_administration.png}
+\caption{Diagramme de cas d'utilisation — Module Administration}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Gérer les utilisateurs et les rôles \\
+\textbf{Objectif} & Créer, modifier et supprimer des comptes utilisateurs et leur attribuer un rôle. \\
+\textbf{Acteurs} & Administrateur \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & L'administrateur est authentifié. \\
+\textbf{Scénario nominal} & L'administrateur accède à la page de gestion, crée un nouvel utilisateur en renseignant ses informations et en lui attribuant un rôle parmi les quatre disponibles. Le système génère automatiquement un identifiant (EMP-XXX) et un mot de passe. \\
+\textbf{Scénarios secondaires} & Modifier un compte ; supprimer un compte ; consulter la liste des utilisateurs. \\
+\hline
+\end{tabular}
+\caption{Description — Gérer les utilisateurs et les rôles}
+\end{table}
+
+\subsection{Module Gestion de la Maintenance}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/uc_maintenance.png}
+\caption{Diagramme de cas d'utilisation — Module Gestion de la Maintenance}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Gérer les équipements et les capteurs \\
+\textbf{Objectif} & Ajouter, modifier et consulter les équipements et leurs capteurs associés. \\
+\textbf{Acteurs} & Responsable maintenance \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & L'utilisateur est authentifié avec le rôle Responsable maintenance. \\
+\textbf{Scénario nominal} & Le responsable ajoute un équipement avec sa catégorie, criticité et localisation. Il peut ensuite y associer des capteurs en configurant le type, le protocole de connexion, l'unité et les seuils d'alerte. \\
+\textbf{Scénarios secondaires} & Modifier un équipement ; consulter les graphiques capteurs ; configurer les seuils. \\
+\hline
+\end{tabular}
+\caption{Description — Gérer les équipements et les capteurs}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Créer et affecter une intervention \\
+\textbf{Objectif} & Planifier une intervention et l'affecter à un technicien. \\
+\textbf{Acteurs} & Responsable maintenance \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & Au moins un équipement et un technicien existent. \\
+\textbf{Scénario nominal} & Le responsable crée une intervention en sélectionnant l'équipement, le type (préventive/corrective), la priorité, et le technicien. Il peut définir une checklist (gamme de maintenance) avec des étapes ordonnées. Le technicien reçoit une notification. \\
+\textbf{Scénarios secondaires} & Approuver une demande d'intervention soumise par un employé. \\
+\hline
+\end{tabular}
+\caption{Description — Créer et affecter une intervention}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Exécuter une intervention avec checklist \\
+\textbf{Objectif} & Démarrer, exécuter (cocher les étapes) et clôturer une intervention. \\
+\textbf{Acteurs} & Technicien \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & Une intervention est affectée au technicien. \\
+\textbf{Scénario nominal} & Le technicien démarre l'intervention, coche les étapes de la checklist au fur et à mesure de l'exécution, puis clôture l'intervention avec un rapport. Le responsable maintenance reçoit une notification. \\
+\textbf{Scénarios secondaires} & Soumettre une demande d'intervention pour signaler un problème. \\
+\hline
+\end{tabular}
+\caption{Description — Exécuter une intervention avec checklist}
+\end{table}
+
+\subsection{Module Surveillance \& Alertes}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.90\textwidth]{figures/uc_surveillance.png}
+\caption{Diagramme de cas d'utilisation — Module Surveillance \& Alertes}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Générer une alerte automatique \\
+\textbf{Objectif} & Détecter un dépassement de seuil et créer une alerte. \\
+\textbf{Acteurs} & Système \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & Un capteur est configuré avec des seuils d'alerte. \\
+\textbf{Scénario nominal} & Lorsqu'une mesure capteur dépasse le seuil d'alerte ou le seuil critique, le système crée automatiquement une alerte (niveau warning ou critical) et envoie une notification aux responsables maintenance. Un anti-doublon empêche la création d'alertes multiples dans la même heure. \\
+\textbf{Scénarios secondaires} & Aucun (processus automatique). \\
+\hline
+\end{tabular}
+\caption{Description — Générer une alerte automatique}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Consulter et traiter les alertes \\
+\textbf{Objectif} & Visualiser, prendre en charge et résoudre les alertes. \\
+\textbf{Acteurs} & Responsable maintenance, Superviseur \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & Des alertes existent dans le système. \\
+\textbf{Scénario nominal} & L'utilisateur consulte la liste des alertes filtrées par niveau et statut, prend en charge une alerte (statut → acknowledged), puis la marque comme résolue après traitement. \\
+\textbf{Scénarios secondaires} & Filtrer par équipement ; consulter le détail d'une alerte. \\
+\hline
+\end{tabular}
+\caption{Description — Consulter et traiter les alertes}
+\end{table}
+
+\subsection{Module Maintenance Prédictive (IA)}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/uc_ia.png}
+\caption{Diagramme de cas d'utilisation — Module Maintenance Prédictive}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Analyser les tendances et calculer les prédictions \\
+\textbf{Objectif} & Analyser les données capteurs pour prédire les pannes. \\
+\textbf{Acteurs} & Système \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & Des données capteurs suffisantes existent (fenêtre 48h minimum). \\
+\textbf{Scénario nominal} & Le système applique une régression linéaire (fenêtre 48h) pour détecter les tendances, calcule un z-score (fenêtre 6h) pour les anomalies, et produit un score composite de risque (0.40 × proximité + 0.35 × dégradation + 0.25 × anomalie). Il estime la durée de vie restante (RUL) avant atteinte du seuil critique. \\
+\textbf{Scénarios secondaires} & Recalcul périodique. \\
+\hline
+\end{tabular}
+\caption{Description — Analyser les tendances et calculer les prédictions}
+\end{table}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.25\textwidth}p{0.67\textwidth}@{}}
+\hline
+\multicolumn{2}{c}{\textbf{Sommaire d'identification}} \\
+\hline
+\textbf{Titre} & Consulter les prédictions de panne \\
+\textbf{Objectif} & Visualiser les équipements à risque et leurs scores. \\
+\textbf{Acteurs} & Responsable maintenance, Superviseur \\
+\hline
+\multicolumn{2}{c}{\textbf{Description des scénarios}} \\
+\hline
+\textbf{Pré-conditions} & Des prédictions ont été calculées. \\
+\textbf{Scénario nominal} & L'utilisateur consulte la page des prédictions affichant pour chaque capteur : le score de risque, le niveau (critique/élevé/modéré/faible), la durée de vie restante estimée et le z-score d'anomalie. \\
+\textbf{Scénarios secondaires} & Consulter le widget prédictions sur le dashboard. \\
+\hline
+\end{tabular}
+\caption{Description — Consulter les prédictions de panne}
+\end{table}
+
+\section{Diagramme de classes}
+
+\begin{figure}[H]
+\centering
+\makebox[\textwidth]{\includegraphics[width=1.15\textwidth]{figures/class_diagram_global.png}}
+\caption{Diagramme de classes global de la plateforme AIMOS}
+\end{figure}
+
+Les classes sont regroupées en cinq packages :
+\begin{itemize}
+    \item \textbf{Gestion des utilisateurs} : User, UserProfile, SystemAdmin, UserPlainPassword
+    \item \textbf{Équipements \& Capteurs} : EquipmentCategory, Equipment, Sensor, SensorReading
+    \item \textbf{Interventions \& Maintenance} : Intervention, InterventionRequest, MaintenanceChecklist, ChecklistItem, InterventionChecklistProgress
+    \item \textbf{Alertes \& Notifications} : Alert, Notification
+    \item \textbf{Journal d'activité} : ActivityLog
+\end{itemize}
+
+\subsection{Relations principales}
+\begin{itemize}
+    \item Un \textbf{User} possède un \textbf{UserProfile} (1:1) qui définit son rôle ;
+    \item Une \textbf{EquipmentCategory} contient plusieurs \textbf{Equipment} ;
+    \item Un \textbf{Equipment} possède plusieurs \textbf{Sensors}, chacun produisant des \textbf{SensorReadings} ;
+    \item Un \textbf{Equipment} peut avoir plusieurs \textbf{Interventions}, chacune affectée à un technicien (User) ;
+    \item Une \textbf{Intervention} peut avoir une \textbf{MaintenanceChecklist} composée de \textbf{ChecklistItems} ;
+    \item Un \textbf{Equipment} peut déclencher des \textbf{Alerts} via ses capteurs ;
+    \item Une \textbf{Alert} génère des \textbf{Notifications} envoyées aux utilisateurs concernés.
+\end{itemize}
+
+\section{Architecture technique}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/architecture_technique.png}
+\caption{Architecture technique de la plateforme AIMOS}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Couche Client} : Frontend React (Vite), communique avec le backend via API REST ;
+    \item \textbf{Couche Backend} : Django REST Framework avec 7 apps modulaires (users, equipment, sensors, interventions, alerts, activity, ai) ;
+    \item \textbf{Couche Données} : PostgreSQL, base unique avec tables organisées par domaine ;
+    \item \textbf{Conteneurisation} : Docker Compose coordonne les services en développement (4 conteneurs : db, backend, frontend, pgadmin) ;
+    \item \textbf{Production} : Nginx (reverse proxy + fichiers statiques React) + Gunicorn (3 workers Django) + PostgreSQL.
+\end{itemize}
+
+\subsection{Architecture de déploiement}
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.20\textwidth}p{0.35\textwidth}p{0.35\textwidth}@{}}
+\hline
+\textbf{Composant} & \textbf{Développement} & \textbf{Production} \\
+\hline
+Frontend & Vite dev server (port 3000) & Build statique servi par Nginx \\
+\hline
+Backend & Django runserver (port 8000) & Gunicorn (3 workers) \\
+\hline
+Reverse proxy & — & Nginx (port 80) \\
+\hline
+Base de données & PostgreSQL (port 5432) & PostgreSQL (port 5432) \\
+\hline
+Orchestration & Docker Compose (4 containers) & Docker Compose (3 containers) \\
+\hline
+\end{tabular}
+\caption{Comparaison développement vs production}
+\end{table}
+
+\section{Matrice des rôles et accès}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.32\textwidth}cccc@{}}
+\hline
+\textbf{Fonctionnalité} & \textbf{Admin} & \textbf{Superviseur} & \textbf{Resp. maint.} & \textbf{Technicien} \\
+\hline
+Dashboard Admin & \checkmark & & & \\
+\hline
+Dashboard opérationnel & & \checkmark & \checkmark & \\
+\hline
+Gestion utilisateurs & \checkmark & & & \\
+\hline
+Équipements (lecture) & & \checkmark & \checkmark & \checkmark \\
+\hline
+Équipements (gestion) & & & \checkmark & \\
+\hline
+Interventions (gestion) & & & \checkmark & \\
+\hline
+Mes interventions & & & & \checkmark \\
+\hline
+Alertes & & \checkmark & \checkmark & \checkmark \\
+\hline
+Prédictions IA & & \checkmark & \checkmark & \\
+\hline
+Journal d'activité & & \checkmark & & \\
+\hline
+Demandes d'intervention & & & \checkmark & \checkmark \\
+\hline
+Profil personnel & \checkmark & \checkmark & \checkmark & \checkmark \\
+\hline
+\end{tabular}
+\caption{Matrice des accès par rôle (RBAC)}
+\end{table}
+
+\section{Conclusion}
+Ce chapitre a présenté l'analyse des besoins, les acteurs, les cas d'utilisation par module, le diagramme de classes et l'architecture technique retenue. Le chapitre suivant détaille la réalisation concrète de la plateforme.

@@ -1,0 +1,21 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecaseBackgroundColor white
+skinparam actorStyle awesome
+
+rectangle "AIMOS Platform" {
+  rectangle "Module Administration" <<Module>> {
+    (S'authentifier) as UC1
+    (Gérer les utilisateurs\net les rôles) as UC2
+    (Gérer son profil) as UC3
+  }
+}
+
+:Admin: -- UC1
+:Admin: -- UC2
+:Utilisateur: as USER
+USER -- UC1
+USER -- UC3
+
+@enduml

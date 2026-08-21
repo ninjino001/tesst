@@ -1,0 +1,184 @@
+@startuml
+title Diagramme de classes global – AIMOS
+
+skinparam classAttributeIconSize 0
+skinparam classBackgroundColor white
+skinparam classBorderColor #333333
+skinparam packageStyle rectangle
+hide methods
+hide circle
+
+' ============================================================
+package "Gestion des utilisateurs" {
+  class User {
+    +username
+    +email
+    +first_name
+    +last_name
+    +is_active
+  }
+
+  class UserProfile {
+    +airport
+    +role_title
+  }
+
+  class SystemAdmin {
+    +username
+    +email
+    +password
+    +is_active
+  }
+
+  class UserPlainPassword {
+    +password
+  }
+}
+
+' ============================================================
+package "Équipements & Capteurs" {
+  class EquipmentCategory {
+    +name
+    +description
+    +icon
+  }
+
+  class Equipment {
+    +reference
+    +name
+    +model
+    +serial_number
+    +manufacturer
+    +status
+    +criticality
+    +location
+    +installation_date
+    +last_maintenance
+    +next_maintenance
+  }
+
+  class Sensor {
+    +reference
+    +name
+    +sensor_type
+    +protocol
+    +unit
+    +min_normal
+    +max_normal
+    +alert_threshold
+    +critical_threshold
+    +status
+    +last_value
+  }
+
+  class SensorReading {
+    +value
+    +timestamp
+    +is_anomaly
+    +anomaly_score
+  }
+}
+
+' ============================================================
+package "Interventions & Maintenance" {
+  class Intervention {
+    +reference
+    +intervention_type
+    +priority
+    +status
+    +description
+    +report
+    +planned_date
+    +started_at
+    +closed_at
+  }
+
+  class InterventionRequest {
+    +reference
+    +title
+    +description
+    +priority
+    +status
+    +rejection_reason
+  }
+
+  class MaintenanceChecklist {
+    +name
+    +description
+    +intervention_type
+    +estimated_duration_minutes
+  }
+
+  class ChecklistItem {
+    +order
+    +description
+    +is_critical
+  }
+
+  class InterventionChecklistProgress {
+    +is_completed
+    +completed_at
+    +notes
+  }
+}
+
+' ============================================================
+package "Alertes & Notifications" {
+  class Alert {
+    +reference
+    +level
+    +status
+    +message
+    +measured_value
+    +threshold_value
+  }
+
+  class Notification {
+    +notification_type
+    +title
+    +message
+    +is_read
+  }
+}
+
+' ============================================================
+package "Journal d'activité" {
+  class ActivityLog {
+    +action
+    +description
+    +target_type
+    +target_reference
+    +created_at
+  }
+}
+
+' ============================================================
+' Relations - Utilisateurs
+User "1" -- "1" UserProfile
+User "1" -- "0..1" UserPlainPassword
+
+' Relations - Équipements
+EquipmentCategory "1" -- "0..*" Equipment
+Equipment "1" -- "0..*" Sensor
+Sensor "1" -- "0..*" SensorReading
+
+' Relations - Interventions
+Equipment "1" -- "0..*" Intervention
+User "1" -- "0..*" Intervention : technicien
+Intervention "1" -- "0..*" MaintenanceChecklist
+MaintenanceChecklist "1" -- "0..*" ChecklistItem
+Intervention "1" -- "0..*" InterventionChecklistProgress
+ChecklistItem "1" -- "0..*" InterventionChecklistProgress
+Equipment "1" -- "0..*" InterventionRequest
+InterventionRequest "0..1" -- "0..1" Intervention
+
+' Relations - Alertes
+Equipment "1" -- "0..*" Alert
+Sensor "1" -- "0..*" Alert
+Alert "1" -- "0..*" Notification
+User "1" -- "0..*" Notification : destinataire
+
+' Relations - Journal
+User "1" -- "0..*" ActivityLog
+
+@enduml

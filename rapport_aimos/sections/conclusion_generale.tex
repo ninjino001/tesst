@@ -1,0 +1,20 @@
+\chapter*{Conclusion générale et Perspectives}
+\addcontentsline{toc}{chapter}{Conclusion générale et Perspectives}
+
+Ce projet de stage de fin d'études a permis la conception et la réalisation de la plateforme AIMOS (Airport Intelligent Maintenance Operations System), une solution intégrée de maintenance intelligente répondant aux besoins opérationnels de l'ONDA pour la gestion des équipements aéroportuaires.
+
+Le premier chapitre a posé le contexte du stage en identifiant les limites de la maintenance traditionnelle (corrective et préventive systématique) dans les aéroports, et a défini la méthodologie itérative adoptée sur 8 semaines. Le deuxième chapitre a présenté l'organisme d'accueil, l'ONDA, son écosystème informatique (Oracle EBS, HR Access, GTB/GTC) et le positionnement d'AIMOS comme couche d'intelligence prédictive complémentaire.
+
+Le troisième chapitre a détaillé l'analyse et la conception à travers l'identification de quatre acteurs, la spécification des cas d'utilisation par module, le diagramme de classes et la définition d'une architecture technique conteneurisée (React, Django REST Framework, PostgreSQL, Docker). Le quatrième chapitre a présenté la réalisation concrète avec des interfaces différenciées par rôle, un système d'alertes automatiques, un module de prédiction basé sur la régression linéaire et le z-score, et un déploiement production avec Nginx et Gunicorn.
+
+La plateforme livrée démontre la faisabilité d'une approche de maintenance prédictive pour les infrastructures aéroportuaires, intégrant surveillance, intelligence artificielle et gestion opérationnelle au sein d'un même écosystème technique.
+
+\vspace{0.3cm}
+\noindent\textbf{Perspectives.} Plusieurs axes d'amélioration sont envisagés pour les évolutions futures de la plateforme :
+\begin{itemize}
+    \item \textbf{Intégration IoT réelle} : connexion aux capteurs physiques via les protocoles configurés (Modbus TCP, MQTT, OPC-UA) pour remplacer les données simulées ;
+    \item \textbf{Modèles IA avancés} : remplacement de la régression linéaire par des modèles de deep learning (LSTM, Transformer) pour des prédictions plus précises sur des séries temporelles complexes ;
+    \item \textbf{Application mobile} : développement d'une application mobile pour les techniciens permettant la consultation et la mise à jour des interventions sur le terrain ;
+    \item \textbf{Intégration avec Oracle EBS} : synchronisation avec le module achats/stock pour la gestion automatique des pièces détachées ;
+    \item \textbf{Extension multi-aéroports} : généralisation de la plateforme à l'ensemble des aéroports gérés par l'ONDA avec un tableau de bord consolidé.
+\end{itemize}

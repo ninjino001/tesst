@@ -1,0 +1,239 @@
+\chapter{Réalisation de l'application}
+
+\section{Introduction}
+Ce chapitre présente la phase de réalisation de la plateforme AIMOS. Il détaille les technologies utilisées, les principales interfaces développées pour chaque rôle, le module d'intelligence artificielle et le déploiement en production.
+
+\section{Outils et technologies utilisés}
+
+\subsection{React}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.20\textwidth]{Logos/React logo.png}
+    \caption{Logo de React}
+\end{figure}
+React est une bibliothèque JavaScript développée par Meta pour créer des interfaces utilisateur sous forme de composants réutilisables. Nous l'avons utilisé avec JavaScript (ES6+) pour le frontend de la plateforme, combiné avec la bibliothèque Recharts pour les graphiques.
+
+\subsection{Vite}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.20\textwidth]{Logos/Vite logo.png}
+    \caption{Logo de Vite}
+\end{figure}
+Vite est un outil de build moderne offrant un serveur de développement rapide avec rechargement à chaud (HMR) et un bundling optimisé pour la production. Il a été choisi pour sa rapidité par rapport à Webpack.
+
+\subsection{Python et Django REST Framework}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.20\textwidth]{Logos/Django logo.png}
+    \caption{Logo de Django}
+\end{figure}
+Django est un framework web Python suivant l'architecture MVT. Combiné avec Django REST Framework (DRF), il permet d'exposer des API REST consommées par le frontend React. Le backend est structuré en 7 apps modulaires.
+
+\subsection{PostgreSQL}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.20\textwidth]{Logos/PostgreSQL Logo.png}
+    \caption{Logo de PostgreSQL}
+\end{figure}
+PostgreSQL est le système de gestion de base de données relationnelle utilisé pour stocker l'ensemble des données de la plateforme (équipements, capteurs, mesures, interventions, alertes).
+
+\subsection{Docker}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.20\textwidth]{Logos/Docker logo.png}
+    \caption{Logo de Docker}
+\end{figure}
+Docker permet de conteneuriser chaque service de l'application dans des conteneurs isolés. Docker Compose coordonne l'ensemble et permet de lancer toute la plateforme avec une seule commande.
+
+\subsection{Nginx et Gunicorn}
+En production, Nginx sert de reverse proxy et sert les fichiers statiques du frontend React, tandis que Gunicorn remplace le serveur de développement Django avec 3 workers pour gérer les requêtes de manière performante.
+
+\subsection{Récapitulatif des technologies}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.30\textwidth}p{0.62\textwidth}@{}}
+\hline
+\textbf{Technologie} & \textbf{Rôle} \\
+\hline
+React + JavaScript & Interface utilisateur (frontend) \\
+\hline
+Vite & Bundler et serveur de développement \\
+\hline
+Recharts & Graphiques et visualisations \\
+\hline
+CSS custom & Style et mise en page \\
+\hline
+Python 3.12 & Langage backend \\
+\hline
+Django + DRF & Framework backend et API REST \\
+\hline
+PostgreSQL 16 & Base de données relationnelle \\
+\hline
+Docker \& Docker Compose & Conteneurisation et orchestration \\
+\hline
+Nginx & Reverse proxy (production) \\
+\hline
+Gunicorn & Serveur WSGI (production) \\
+\hline
+Git / GitHub & Versioning \\
+\hline
+\end{tabular}
+\caption{Technologies principales du projet}
+\end{table}
+
+\section{Réalisation de l'application web}
+
+\subsection{Page d'authentification}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/login.png}
+    \caption{Interface d'authentification}
+\end{figure}
+L'interface d'authentification constitue le point d'entrée sécurisé de la plateforme AIMOS. Elle dispose d'un formulaire de connexion (identifiant + mot de passe) et redirige dynamiquement chaque utilisateur vers son espace de travail selon son rôle : tableau de bord admin pour l'Administrateur, dashboard opérationnel pour le Superviseur et le Responsable maintenance, ou page « Mes interventions » pour le Technicien.
+
+\subsection{Dashboard Administrateur}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/admin_dashboard.png}
+    \caption{Tableau de bord de l'Administrateur}
+\end{figure}
+Le tableau de bord administrateur affiche des KPI sur les utilisateurs (total, actifs, en ligne, inactifs), un graphique de répartition par rôle (PieChart), un historique des connexions (BarChart) et un tableau listant tous les utilisateurs avec leur statut.
+
+\subsection{Gestion des utilisateurs}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/users.png}
+    \caption{Interface de gestion des utilisateurs}
+\end{figure}
+Cette interface permet à l'Administrateur de créer, modifier et supprimer des comptes. Le formulaire en panel latéral gère le nom, l'email, le rôle et génère automatiquement un identifiant (EMP-XXX) et un mot de passe.
+
+\subsection{Dashboard opérationnel}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/dashboard.png}
+    \caption{Tableau de bord opérationnel}
+\end{figure}
+Le dashboard opérationnel offre une vue synthétique de l'état de la maintenance : KPI (équipements, interventions, alertes, disponibilité), graphiques de tendances (interventions mensuelles, alertes sur 30 jours), répartition des équipements par catégorie, et un widget de prédictions IA montrant les équipements à risque.
+
+\subsection{Gestion des équipements}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/equipment_list.png}
+    \caption{Interface de gestion des équipements}
+\end{figure}
+La page équipements présente un tableau paginé avec filtres (catégorie, statut, criticité), des KPI et des onglets par statut. Un panel latéral permet l'ajout/modification avec upload d'image.
+
+\subsection{Détail d'un équipement et capteurs}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/equipment_detail.png}
+    \caption{Page de détail d'un équipement}
+\end{figure}
+La page de détail affiche les informations complètes de l'équipement, un score de santé (gauge SVG), les indicateurs clés issus des capteurs et un bouton d'accès aux graphiques capteurs.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/sensor_charts.png}
+    \caption{Graphiques des capteurs d'un équipement}
+\end{figure}
+Cette page affiche les courbes temporelles de chaque capteur avec les seuils d'alerte visualisés, et permet l'ajout de nouveaux capteurs avec configuration des protocoles de connexion.
+
+\subsection{Gestion des interventions}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/interventions.png}
+    \caption{Interface de gestion des interventions}
+\end{figure}
+La page interventions du Responsable maintenance présente un tableau avec filtres, des onglets par statut et un formulaire de création en panel latéral permettant de sélectionner l'équipement, le type, la priorité, le technicien et de définir une checklist.
+
+\subsection{Mes interventions (Technicien)}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/my_interventions.png}
+    \caption{Interface « Mes interventions » du Technicien}
+\end{figure}
+Cette interface présente les interventions affectées au technicien sous forme de cartes, avec des filtres par onglets (Toutes, Affectée, En cours, Clôturée). Une modal de détail permet de démarrer l'intervention, cocher les étapes de la checklist et clôturer avec un rapport.
+
+\subsection{Alertes et notifications}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/alerts.png}
+    \caption{Interface de gestion des alertes}
+\end{figure}
+La page alertes affiche les KPI (critiques, actives, prises en charge, résolues), un tableau filtrable par niveau et statut, et une modal de détail avec les actions de prise en charge et résolution.
+
+\subsection{Prédictions IA}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Interfaces/predictions.png}
+    \caption{Interface des prédictions de maintenance}
+\end{figure}
+La page prédictions affiche pour chaque capteur : le score de risque (barre colorée), le niveau de risque, la durée de vie restante estimée (RUL) et le z-score d'anomalie. Les capteurs sont classés par score décroissant.
+
+\subsection{Profil utilisateur}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Interfaces/profile.png}
+    \caption{Page de profil utilisateur}
+\end{figure}
+La page profil, accessible à tous les rôles via un clic sur le nom dans la barre supérieure, affiche les informations personnelles et permet le changement de mot de passe.
+
+\section{Module d'Intelligence Artificielle}
+
+Le module IA implémente un moteur de prédiction de pannes basé sur trois composantes :
+
+\begin{enumerate}
+    \item \textbf{Régression linéaire (fenêtre 48h)} : détecte la tendance d'évolution du capteur et estime quand il atteindra le seuil critique (RUL) ;
+    \item \textbf{Z-score (fenêtre 6h)} : identifie les comportements anormaux par rapport à la moyenne récente ;
+    \item \textbf{Score composite} : agrège les trois dimensions en un score unique :
+\end{enumerate}
+
+$$Score = 0.40 \times Proximité + 0.35 \times Dégradation + 0.25 \times Anomalie$$
+
+Les résultats sont catégorisés en quatre niveaux :
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.15\textwidth}p{0.20\textwidth}p{0.55\textwidth}@{}}
+\hline
+\textbf{Score} & \textbf{Niveau} & \textbf{Signification} \\
+\hline
+$\geq 0.75$ & Critique & Panne imminente, intervention urgente \\
+\hline
+$\geq 0.50$ & Élevé & Dégradation importante, planifier une intervention \\
+\hline
+$\geq 0.25$ & Modéré & Tendance à surveiller \\
+\hline
+$< 0.25$ & Faible & Fonctionnement normal \\
+\hline
+\end{tabular}
+\caption{Catégorisation des scores de risque}
+\end{table}
+
+\section{Déploiement en production}
+
+L'application est déployée en production via Docker Compose avec l'architecture suivante :
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{figures/architecture_deploiement.png}
+\caption{Architecture de déploiement en production}
+\end{figure}
+
+\begin{verbatim}
+Port 80 (Nginx)
+├── /*        → fichiers React build (statiques)
+├── /api/*    → Gunicorn (Django, 3 workers)
+├── /media/*  → fichiers uploadés
+└── /static/* → fichiers admin Django
+\end{verbatim}
+
+Le déploiement se fait sur une machine Linux avec Docker installé, en une seule commande :
+\begin{minted}[bgcolor=bg,fontsize=\small]{bash}
+docker compose -f docker-compose.production.yml up --build -d
+\end{minted}
+
+\section{Conclusion}
+Ce chapitre a présenté la réalisation concrète de la plateforme AIMOS, depuis les technologies choisies jusqu'aux interfaces développées pour chaque rôle et le déploiement en production. L'ensemble des fonctionnalités implémentées couvre le cycle complet de la maintenance intelligente : de la surveillance des capteurs à la prédiction des pannes, en passant par la gestion structurée des interventions avec gammes de maintenance.

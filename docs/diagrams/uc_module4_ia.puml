@@ -1,0 +1,24 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam usecaseBackgroundColor white
+skinparam actorStyle awesome
+
+rectangle "AIMOS Platform" {
+  rectangle "Module Maintenance Prédictive (IA)" <<Module>> {
+    (Analyser les tendances\ndes capteurs) as UC1
+    (Calculer le score de risque\net la durée de vie restante) as UC2
+    (Consulter les prédictions\nde panne) as UC3
+  }
+}
+
+:Système: as SYS
+:Resp.\nmaintenance: as RM
+:Superviseur: as SUP
+
+SYS -- UC1
+UC1 ..> UC2 : <<include>>
+RM -- UC3
+SUP -- UC3
+
+@enduml

@@ -1,0 +1,70 @@
+\chapter{Contexte général du stage}
+
+\section{Introduction}
+Ce chapitre présente le cadre général dans lequel s'inscrit ce projet de stage. Il expose la problématique liée à la maintenance des équipements aéroportuaires, définit les objectifs du projet AIMOS, et décrit la méthodologie de travail adoptée ainsi que le planning suivi.
+
+\section{Problématique}
+Les aéroports marocains gèrent un parc d'équipements techniques diversifié et critique : systèmes HVAC (CTA, pompes à chaleur), convertisseurs de fréquence 400 Hz, tapis de livraison des bagages, ascenseurs et escalators, équipements de sûreté (RX, EDS, body scan), passerelles d'embarquement et portes automatiques.
+
+La gestion de la maintenance de ces équipements présente plusieurs défis :
+\begin{itemize}
+    \item \textbf{Maintenance réactive} : les pannes surviennent sans anticipation, causant des arrêts d'exploitation coûteux et des perturbations du trafic ;
+    \item \textbf{Maintenance préventive non optimisée} : les interventions systématiques à intervalles fixes ne tiennent pas compte de l'état réel des équipements ;
+    \item \textbf{Absence de supervision centralisée} : les données des capteurs et les historiques d'interventions ne sont pas exploités de manière intégrée ;
+    \item \textbf{Manque de traçabilité} : le suivi des interventions, des demandes et des alertes reste souvent manuel ou fragmenté entre plusieurs outils.
+\end{itemize}
+
+La problématique est donc la suivante : \textit{comment concevoir et développer une plateforme intégrée qui permette de centraliser la gestion de la maintenance aéroportuaire, d'exploiter les données des capteurs pour anticiper les pannes, et d'optimiser le cycle complet des interventions ?}
+
+\section{Objectifs du projet}
+L'objectif global est de concevoir et réaliser la plateforme AIMOS comme un outil opérationnel couvrant l'ensemble du cycle de maintenance intelligente.
+
+Les objectifs spécifiques sont :
+\begin{itemize}
+    \item Développer un module de \textbf{gestion des équipements} avec inventaire, catégorisation et suivi de l'état ;
+    \item Implémenter un système de \textbf{capteurs IoT} avec configuration des seuils et historique des mesures ;
+    \item Créer un module de \textbf{gestion des interventions} complet : planification, affectation, exécution avec gammes de maintenance (checklists), et demandes d'intervention ;
+    \item Développer un \textbf{système d'alertes automatiques} déclenché par les dépassements de seuils des capteurs ;
+    \item Implémenter un module d'\textbf{intelligence artificielle} pour la maintenance prédictive (analyse de tendances, estimation de la durée de vie restante, détection d'anomalies) ;
+    \item Mettre en place un \textbf{contrôle d'accès par rôle} (RBAC) avec quatre profils utilisateurs distincts ;
+    \item Déployer l'application dans un environnement de \textbf{production conteneurisé}.
+\end{itemize}
+
+\section{Méthodologie de travail}
+Le projet a été mené selon une démarche itérative et incrémentale, permettant de livrer progressivement des fonctionnalités opérationnelles et de valider chaque module avec l'encadrant avant de passer au suivant.
+
+Le développement a été découpé en quatre itérations :
+
+\begin{itemize}
+    \item \textbf{Itération 1 — Fondations :} mise en place de l'architecture technique (Docker, Django, React), authentification, gestion des utilisateurs, dashboard et contrôle d'accès par rôle ;
+    \item \textbf{Itération 2 — Équipements \& Capteurs :} CRUD équipements, catégories, capteurs avec configuration des seuils, génération de données simulées, graphiques de suivi ;
+    \item \textbf{Itération 3 — Interventions \& Alertes :} cycle complet des interventions (création, affectation, checklist, clôture), système d'alertes automatiques, notifications, demandes d'intervention ;
+    \item \textbf{Itération 4 — IA \& Déploiement :} module de maintenance prédictive, optimisation, déploiement production (Nginx + Gunicorn).
+\end{itemize}
+
+À chaque itération, les étapes suivantes étaient appliquées : analyse → conception → développement → tests → validation.
+
+\section{Planning}
+Le stage s'est déroulé sur une période de 8 semaines :
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{@{}p{0.18\textwidth}p{0.60\textwidth}p{0.14\textwidth}@{}}
+\hline
+\textbf{Période} & \textbf{Activités} & \textbf{Itération} \\
+\hline
+Semaines 1--2 & Prise en main de l'environnement, étude de l'existant, cadrage fonctionnel, mise en place de l'architecture (Docker, Django, React), authentification et gestion des utilisateurs. & Itération 1 \\
+\hline
+Semaines 3--4 & Développement du module équipements (CRUD, catégories), module capteurs (configuration, seuils, graphiques), génération de données simulées réalistes. & Itération 2 \\
+\hline
+Semaines 5--6 & Module interventions (cycle complet avec checklists), système d'alertes automatiques, notifications temps réel, demandes d'intervention. & Itération 3 \\
+\hline
+Semaines 7--8 & Module IA (prédictions, détection d'anomalies, RUL), optimisation, déploiement production, rédaction du rapport. & Itération 4 \\
+\hline
+\end{tabular}
+\caption{Planning du stage}
+\end{table}
+
+\section{Conclusion}
+Ce chapitre a posé le contexte du stage, formulé la problématique de la maintenance aéroportuaire et précisé les objectifs et la méthodologie adoptée. Le chapitre suivant présente l'organisme d'accueil, l'ONDA, et son écosystème informatique.
