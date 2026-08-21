@@ -1,0 +1,337 @@
+/* ===== Dashboard - Power BI Style Analytics ===== */
+
+.dashboard-page {
+  display: grid;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: var(--text);
+}
+
+.dashboard-subtitle {
+  margin: 0.4rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- KPI Cards Row --- */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1.3rem 1.4rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 18px 0 0 18px;
+}
+
+.kpi-blue::before { background: #2563eb; }
+.kpi-purple::before { background: #7c3aed; }
+.kpi-red::before { background: #dc2626; }
+.kpi-green::before { background: #16a34a; }
+
+.kpi-icon {
+  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.kpi-blue .kpi-icon { background: #eff6ff; color: #2563eb; }
+.kpi-purple .kpi-icon { background: #f5f3ff; color: #7c3aed; }
+.kpi-red .kpi-icon { background: #fef2f2; color: #dc2626; }
+.kpi-green .kpi-icon { background: #f0fdf4; color: #16a34a; }
+
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.kpi-value {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1;
+}
+
+.kpi-label {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kpi-trend {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.trend-up {
+  color: #16a34a;
+  background: #f0fdf4;
+}
+
+.trend-down {
+  color: #dc2626;
+  background: #fef2f2;
+}
+
+.trend-neutral {
+  color: #64748b;
+  background: #f1f5f9;
+}
+
+/* --- Chart Panels --- */
+.charts-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.chart-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition: box-shadow 0.2s ease;
+}
+
+.chart-panel:hover {
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+}
+
+.chart-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.chart-panel-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.chart-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  background: #eff6ff;
+  color: #2563eb;
+  border-radius: 8px;
+}
+
+.ai-badge {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+
+/* --- Equipment Health Chart --- */
+.health-chart-container {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.health-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.health-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.health-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.health-label {
+  font-size: 0.88rem;
+  color: var(--text);
+}
+
+.health-value {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-left: auto;
+}
+
+/* --- AI Predictions --- */
+.ai-predictions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.ai-prediction-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 0.5fr 0.5fr;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+.ai-prediction-row:last-child {
+  border-bottom: none;
+}
+
+.pred-equipment {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pred-risk-bar-container {
+  background: #f1f5f9;
+  border-radius: 6px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.pred-risk-bar {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.6s ease;
+}
+
+.pred-risk-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+.pred-deadline {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: right;
+}
+
+/* --- Loading state --- */
+.loading-state {
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .charts-grid-2col {
+    grid-template-columns: 1fr;
+  }
+
+  .health-chart-container {
+    flex-direction: column;
+  }
+
+  .ai-prediction-row {
+    grid-template-columns: 1fr 1.5fr 0.5fr 0.5fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .kpi-row {
+    grid-template-columns: 1fr;
+  }
+
+  .kpi-card {
+    padding: 1rem;
+  }
+
+  .chart-panel {
+    padding: 1rem;
+  }
+
+  .ai-prediction-row {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+  }
+}
+
+
+/* ===== Analytics Page KPIs ===== */
+.analytics-kpis {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.analytics-kpi-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.analytics-kpi-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.analytics-kpi-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 0.3rem;
+  text-align: center;
+}

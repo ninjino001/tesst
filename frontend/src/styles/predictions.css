@@ -1,0 +1,184 @@
+/* Predictions Page */
+
+.pred-subtitle {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: -0.5rem 0 1.25rem 0;
+}
+
+.pred-empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--muted);
+}
+
+/* Predictions Grid */
+.pred-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Prediction Card */
+.pred-card {
+  background: white;
+  border-radius: 14px;
+  padding: 1.25rem;
+  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
+  border-left: 4px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.pred-card:hover {
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Card Header */
+.pred-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.75rem;
+}
+
+.pred-card-equipment h3 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+}
+
+.pred-card-ref {
+  font-size: 0.75rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.pred-card-score {
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 0.3rem 0.7rem;
+  border-radius: 10px;
+  min-width: 52px;
+  text-align: center;
+}
+
+/* Sensor Info */
+.pred-card-sensor {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.04);
+}
+
+.pred-sensor-name {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.pred-sensor-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pred-sensor-threshold {
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+/* Details Grid */
+.pred-card-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.pred-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.pred-detail-label {
+  font-size: 0.68rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.pred-detail-value {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pred-rul {
+  font-weight: 800;
+}
+
+/* Score Breakdown Bar */
+.pred-card-breakdown {
+  margin-bottom: 0.75rem;
+}
+
+.pred-bar-container {
+  display: flex;
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #f1f5f9;
+  margin-bottom: 0.4rem;
+}
+
+.pred-bar-segment {
+  height: 100%;
+  transition: width 0.3s;
+}
+
+.pred-bar-legend {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.pred-legend-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  vertical-align: middle;
+}
+
+/* Recommendation */
+.pred-card-recommendation {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.78rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+/* Responsive */
+@media (max-width: 1100px) {
+  .pred-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .pred-card-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

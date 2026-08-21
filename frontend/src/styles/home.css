@@ -1,0 +1,152 @@
+.home-root { font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #fff; background-color:#031826 }
+.home-header { display:flex; align-items:center; justify-content:space-between; padding:20px 48px; position:absolute; top:0; left:0; right:0; z-index:30 }
+.home-logo { height:80px }
+.home-nav { display:flex; gap:20px; align-items:center }
+.home-nav a { color: rgba(255,255,255,0.95); text-decoration:none; font-weight:500 }
+.home-nav a:hover { text-decoration:underline }
+.home-cta { background: #2563eb; color:white; padding:10px 14px; border-radius:8px; text-decoration:none }
+
+.home-hero { height:88vh; display:flex; align-items:center; background-image: linear-gradient(90deg, rgba(3,10,25,0.75) 0%, rgba(3,10,25,0.2) 40%, rgba(3,10,25,0.05) 100%), url('/rabat-sale-airport-background.jpg'); background-size:cover; background-position:center; padding:0 6vw; position:relative }
+.home-hero::before { content:''; position:absolute; left:0; top:0; bottom:0; width:220px; background: linear-gradient(135deg, rgba(8,30,56,0.95) 0%, rgba(8,30,56,0.0) 60%); pointer-events:none }
+.hero-content { max-width:760px; position:relative; z-index:2 }
+.hero-content h1 { font-size:56px; line-height:1.02; margin:0 0 18px; color:#ffffff; font-weight:700 }
+.hero-content .accent { color:#6db8ff; font-weight:800 }
+.hero-content .highlight { color:#ff9a3c }
+.hero-content p { color: rgba(255,255,255,0.92); font-size:18px; max-width:680px }
+
+.hero-actions { margin-top:22px; display:flex; gap:12px }
+.btn { padding:12px 18px; border-radius:8px; text-decoration:none; display:inline-block }
+.btn-primary { background:#2563eb; color:white; box-shadow: 0 6px 18px rgba(37,99,235,0.18) }
+.btn-ghost { background:transparent; color:white; border:1px solid rgba(255,255,255,0.12); padding:10px 16px }
+
+/* Features bar overlapping the hero bottom, with dark translucent background to match mockup */
+.home-features { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; padding:28px 6vw; margin-top:-60px; background: linear-gradient(180deg, rgba(3,9,18,0.18), rgba(3,9,18,0.55)); backdrop-filter: blur(4px); border-top:1px solid rgba(255,255,255,0.06); box-shadow: 0 -8px 40px rgba(2,6,12,0.4) }
+.feature { background: transparent; padding:18px; border-radius:8px; color:#e6eefb; border-left: 3px solid rgba(255,255,255,0.03) }
+.feature h3 { margin:0 0 8px; color:#ffffff }
+.feature p { margin:0; color:rgba(230,238,251,0.85) }
+
+.home-footer { padding:24px 6vw; color:rgba(255,255,255,0.75); text-align:center; background:transparent }
+
+/* Airports of Morocco logo positioned over the hero/footer area */
+.aom-logo { position:fixed; right:28px; bottom:22px; height:56px; z-index:40; filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35)); }
+
+@media (max-width:900px) { .aom-logo { right:14px; bottom:14px; height:56px } }
+@media (max-width:520px) { .home-logo { height:100px } .aom-logo { display:none } }
+
+@media (max-width:1100px){ .home-features { grid-template-columns: 1fr 1fr } .hero-content h1{font-size:42px} }
+@media (max-width:700px){ .home-features { grid-template-columns: 1fr } .home-header{padding:12px 16px} .hero-content h1{font-size:28px} }
+
+/* Login card specific styles */
+.login-card .login-logos { display:flex; flex-direction:column; align-items:center; justify-content:center }
+.login-logo-aom { height:56px; object-fit:contain }
+.login-logo-aimos { height:70px; object-fit:contain }
+
+/* small label displayed above form fields in the login card */
+.field-label { display:block; font-size:0.85rem; color:#334155; margin-bottom:6px }
+
+.login-logo-link { display:block }
+.login-logo-link img { cursor:pointer }
+
+@media (max-width:520px) {
+	.login-logo-aom { height:70px }
+	.login-logo-aimos { height:100px }
+}
+
+.login-page-root {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  position: relative;
+  background-image: linear-gradient(rgba(6, 16, 38, 0.45), rgba(6, 16, 38, 0.45)), url('/rabat-sale-airport-background.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.login-page-root::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 9, 24, 0.45);
+  pointer-events: none;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 28px;
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(24px);
+  position: relative;
+  z-index: 1;
+}
+
+.login-form {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.login-logo-spacer {
+  height: 10px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.login-input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.login-input:focus {
+  border-color: rgba(37, 99, 235, 0.8);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.login-button {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  background: rgba(37, 99, 235, 0.78);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.login-button:hover {
+  background: rgba(37, 99, 235, 0.9);
+  transform: translateY(-1px);
+}
+
+.login-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+/* About section targeted by #about */
+.home-about { padding:48px 6vw; text-align:center; background: linear-gradient(180deg, rgba(2,8,20,0.95), rgba(2,8,20,0.98)); color: #eaf4ff }
+.about-inner { max-width:900px; margin:0 auto }
+.aimos-acronym { font-size:44px; font-weight:800; letter-spacing:4px; color:#6db8ff }
+.aimos-caption { margin-top:6px; color:rgba(234,244,255,0.85); font-size:14px }
+.creator { margin-top:18px; font-size:16px; color:#ffffff; opacity:0.9 }
+
+@media (max-width:700px){ .aimos-acronym { font-size:28px } .creator { font-size:14px } }

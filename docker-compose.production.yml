@@ -1,0 +1,60 @@
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: ${DB_NAME:-aimosdb}
+      POSTGRES_USER: ${DB_USER:-aimos}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-aimos123}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-aimos}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Django Backend (Gunicorn)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_NAME=${DB_NAME:-aimosdb}
+      - DB_USER=${DB_USER:-aimos}
+      - DB_PASSWORD=${DB_PASSWORD:-aimos123}
+      - DB_HOST=db
+      - DB_PORT=5432
+      - SECRET_KEY=${SECRET_KEY:-change-me-in-production}
+      - DEBUG=False
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-*}
+      - ADMIN_USERNAME=${ADMIN_USERNAME}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+    volumes:
+      - media_data:/app/media
+      - static_data:/app/staticfiles
+
+  # Nginx (Reverse Proxy + Frontend)
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    volumes:
+      - media_data:/app/media
+      - static_data:/app/staticfiles
+
+volumes:
+  pgdata:
+  media_data:
+  static_data:

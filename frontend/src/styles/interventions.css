@@ -1,0 +1,347 @@
+/* ===== Interventions / Technician Pages ===== */
+
+/* Tabs */
+.interventions-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+  background: #f1f5f9;
+}
+
+.tab-button.tab-active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.tab-count {
+  background: rgba(0, 0, 0, 0.08);
+  padding: 0.15rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+}
+
+.tab-active .tab-count {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Intervention cards grid */
+.interventions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1rem;
+}
+
+.intervention-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.intervention-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.intervention-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.intervention-ref {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.intervention-equipment {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.intervention-location {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.intervention-desc {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.intervention-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.intervention-type {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* Priority badges */
+.priority-badge {
+  display: inline-flex;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.priority-critical {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.priority-high {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.priority-medium {
+  background: #fffbeb;
+  color: #d97706;
+}
+
+.priority-low {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+/* Status badges small */
+.status-badge-sm {
+  display: inline-flex;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.status-assigned {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.status-in-progress {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.status-suspended {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.status-closed {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+/* Intervention detail modal */
+.intervention-detail-modal {
+  max-width: 560px;
+  width: 90vw;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-label {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.detail-value {
+  font-size: 0.9rem;
+  color: var(--text);
+  text-align: right;
+  flex: 1;
+}
+
+.btn-success {
+  background: #16a34a !important;
+  box-shadow: 0 12px 28px rgba(22, 163, 74, 0.16) !important;
+}
+
+.btn-success:hover {
+  background: #15803d !important;
+}
+
+/* Empty state */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Analytics page */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 720px) {
+  .interventions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .interventions-tabs {
+    overflow-x: auto;
+  }
+}
+
+
+/* ===== Alerts Page ===== */
+.alert-level-badge {
+  display: inline-flex;
+  padding: 0.3rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.alert-level-critical { background: #fef2f2; color: #dc2626; }
+.alert-level-warning { background: #fff7ed; color: #d97706; }
+.alert-level-info { background: #eff6ff; color: #2563eb; }
+
+.alert-status-active { background: #fef2f2; color: #dc2626; }
+.alert-status-acknowledged { background: #eff6ff; color: #2563eb; }
+.alert-status-resolved { background: #f0fdf4; color: #16a34a; }
+
+.alert-row-critical {
+  background: #fef2f2 !important;
+}
+
+.alert-row-critical:hover {
+  background: #fee2e2 !important;
+}
+
+
+/* ===== Checklist ===== */
+.checklist-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(15,23,42,0.06); }
+.checklist-section h4 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--text); }
+.checklist-items { display: flex; flex-direction: column; gap: 0.5rem; }
+.checklist-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem; border-radius: 8px; cursor: pointer; transition: background 0.1s; border: 1px solid rgba(15,23,42,0.06); }
+.checklist-item:hover { background: #f8fafc; }
+.checklist-done { background: #f0fdf4; border-color: #bbf7d0; }
+.checklist-done .checklist-item-text { text-decoration: line-through; color: var(--muted); }
+.checklist-item-text { font-size: 0.85rem; color: var(--text); flex: 1; }
+.checklist-critical { border-left: 3px solid #dc2626; }
+.checklist-critical-badge { font-size: 0.7rem; background: #fee2e2; color: #991b1b; padding: 0.15rem 0.4rem; border-radius: 4px; font-weight: 600; }
+
+
+/* Checklist Builder (create form) */
+.checklist-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.checklist-builder-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checklist-builder-item .eq-input {
+  flex: 1;
+}
+
+.checklist-critical-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.checklist-critical-toggle input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #dc2626;
+}
+
+.checklist-remove-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.checklist-remove-btn:hover {
+  background: #fecaca;
+}
+
+.checklist-add-btn {
+  background: none;
+  border: 1px dashed rgba(15, 23, 42, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: var(--primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.checklist-add-btn:hover {
+  border-color: var(--primary);
+  background: #eff6ff;
+}

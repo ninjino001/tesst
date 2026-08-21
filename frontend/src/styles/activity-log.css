@@ -1,0 +1,166 @@
+/* Activity Log Page */
+
+.al-subtitle {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: -0.5rem 0 1.25rem 0;
+}
+
+/* Toolbar */
+.al-toolbar {
+  margin-bottom: 1.25rem;
+}
+
+.al-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.al-filter-btn {
+  padding: 0.45rem 0.9rem;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 20px;
+  background: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.al-filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.al-filter-btn.al-filter-active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* Loading & Empty */
+.al-loading, .al-empty {
+  text-align: center;
+  padding: 3rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* Feed */
+.al-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Date Group */
+.al-date-header {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  text-transform: capitalize;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  margin-bottom: 0.75rem;
+}
+
+/* Timeline */
+.al-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding-left: 0.5rem;
+}
+
+/* Item */
+.al-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  position: relative;
+}
+
+.al-item:not(:last-child) .al-item-line::after {
+  content: '';
+  position: absolute;
+  top: 36px;
+  left: 18px;
+  width: 2px;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.06);
+}
+
+.al-item-line {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.al-item-dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+}
+
+.al-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.al-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.25rem;
+}
+
+.al-item-user {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.al-item-action {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.al-item-ref {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: #eff6ff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+}
+
+.al-item-desc {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0.15rem 0;
+  line-height: 1.4;
+}
+
+.al-item-time {
+  font-size: 0.72rem;
+  color: #94a3b8;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .al-filter-buttons {
+    gap: 0.35rem;
+  }
+  .al-filter-btn {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.65rem;
+  }
+}
