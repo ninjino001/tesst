@@ -1,0 +1,14 @@
+\chapter*{Abstract}
+
+The proliferation of algorithmic systems within public administrations introduces major systemic risks: decision-making bias, processing opacity, fragmented assessment tools, and legal fragility. In the absence of an integrated solution to quantify, monitor, and mitigate these risks, this end-of-year project proposes the design and implementation of the \textbf{PAGe Platform} (Public Algorithmic Governance Platform).
+
+The platform is built around three complementary modules. \textbf{O-PAGe} (Observation) provides quantitative identification and evaluation of algorithmic risks through normalized indicators, weighted scores, and a four-level categorization (Low, Moderate, High, Critical). \textbf{M-PAGe} (Mitigation) measures organizational maturity through multi-level aggregation (Items, Factors, Dimensions, Risk Level) and computes global compliance indices (RMMC, RMC, GPM). \textbf{I-PAGe} (Impact) enables prospective simulation of the effect of mitigation mechanisms on risk indicators, using an impact matrix and RMM effectiveness calculations.
+
+The technical architecture relies on a React frontend with TypeScript, Vite, and Tailwind CSS, two Django REST Framework backends (O-PAGe on port 8000, M-PAGe on port 8001), a PostgreSQL database, all orchestrated via Docker Compose (5 containers). Seven user roles were identified and implemented, covering the full algorithmic governance cycle: from administration to decision-making, including auditing and comparative observation.
+
+The results demonstrate a functional platform offering role-differentiated dashboards, structured evaluation campaigns, multi-project comparative analysis, and a simulation module with results export.
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} Algorithmic governance, Algorithmic risks, Indicators, Organizational maturity, Mitigation, Impact simulation, Dashboard, Public administration.
+
+/\cleardoublepage

@@ -1,0 +1,71 @@
+\documentclass{rapportENSIAS}
+
+% ==========================
+% Packages
+% ==========================
+\usepackage{lipsum}
+\usepackage{minted}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tgheros}
+\usepackage{tikz}
+
+\renewcommand{\familydefault}{\sfdefault}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.4em}
+
+% Reduce vertical space before chapter titles
+\titlespacing*{\chapter}{0pt}{-30pt}{20pt}
+
+% ===== MASQUER TOUS LES NUMÉROS =====
+\captionsetup{labelformat=empty}         % Figures
+\captionsetup[table]{labelformat=empty}  % Tableaux
+
+\begin{document}
+
+% ==========================
+% Page de garde
+% ==========================
+% Reduce sizes slightly and insert app logo into the subtitle area
+\UE{Projet de Fin d'Année}
+\sujet{\vspace{-0.3cm}\begin{center}\includegraphics[width=0.20\textwidth]{Logos/LogoPAGe.png}\end{center}\vspace{-1.6cm}}
+\titre{\fontsize{18}{20}\selectfont Plateforme de Gouvernance Algorithmique Publique\\
+\rmfamily\mdseries Développement et conception d'une plateforme de gouvernance de gestion des risques algorithmiques}
+\eleves{
+Oussama \textsc{AIT ELKABIR}\\
+Akram \textsc{AL OUMAMI}\\
+
+}
+\encadrant{Pr. B. BOUNABAT}
+\jury{Pr. B. BOUNABAT \\ Pr. M. EL HAMLAOUI}
+\annee{2025-2026}
+
+\fairemarges
+\fairepagedegarde
+
+\input{sections/remerciements}
+\input{sections/resume}
+\input{sections/abstract}  
+% ==========================
+\vspace{-1cm}
+\tabledematieres
+
+\input{sections/liste_abreviations}
+\input{sections/introduction_generale}
+\input{sections/chapitre1}
+\input{sections/chapitre2}
+\input{sections/chapitre3}
+\input{sections/chapitre4}
+\input{sections/conclusion_generale}
+
+\end{document}

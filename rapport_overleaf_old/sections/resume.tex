@@ -1,0 +1,12 @@
+\chapter*{Résumé}
+
+La multiplication des systèmes algorithmiques au sein des administrations publiques engendre des risques systémiques majeurs : biais décisionnels, opacité des traitements, fragmentation des outils d'évaluation et fragilité juridique. Face à l'absence d'une solution intégrée permettant de quantifier, suivre et atténuer ces risques, ce projet de fin d'année propose la conception et la réalisation de la plateforme \textbf{PAGe} (Plateforme de Gouvernance Algorithmique Publique).
+
+La plateforme s'articule autour de trois modules complémentaires. \textbf{O-PAGe} (Observation) assure l'identification et l'évaluation quantitative des risques algorithmiques à travers des indicateurs normalisés, des scores pondérés et une catégorisation à quatre niveaux (Faible, Modéré, Élevé, Critique). \textbf{M-PAGe} (Mitigation) mesure le niveau de maturité organisationnelle via une agrégation multi-niveaux (Items, Facteurs, Dimensions, Niveau de Risque) et calcule des indices de conformité globale (RMMC, RMC, GPM). \textbf{I-PAGe} (Impact) permet la simulation prospective de l'effet des mécanismes de mitigation sur les indicateurs de risque, grâce à une matrice d'impact et au calcul de l'efficacité des RMM.
+
+L'architecture technique repose sur un frontend React avec TypeScript, Vite et Tailwind CSS, deux backends Django REST Framework (O-PAGe sur le port 8000, M-PAGe sur le port 8001), une base de données PostgreSQL, le tout orchestré via Docker Compose (5 conteneurs). Sept rôles utilisateurs ont été identifiés et implémentés, couvrant l'ensemble du cycle de gouvernance algorithmique : de l'administration à la prise de décision, en passant par l'audit et l'observation comparative.
+
+Les résultats obtenus démontrent une plateforme fonctionnelle offrant des tableaux de bord différenciés par rôle, des campagnes d'évaluation structurées, des analyses comparatives multi-projets et un module de simulation avec export des résultats.
+
+\vspace{0.5cm}
+\noindent\textbf{Mots-clés :} Gouvernance algorithmique, Risques algorithmiques, Indicateurs, Maturité organisationnelle, Mitigation, Simulation d'impact, Tableau de bord, Administration publique.

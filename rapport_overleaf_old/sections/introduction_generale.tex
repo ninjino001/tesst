@@ -1,0 +1,26 @@
+\chapter*{Introduction générale}
+\addcontentsline{toc}{chapter}{Introduction générale}
+
+Les administrations publiques recourent de manière croissante aux systèmes algorithmiques pour automatiser ou assister leurs processus décisionnels : attribution de prestations sociales, notation de dossiers, détection de fraudes, priorisation de demandes. Si ces systèmes promettent efficacité et objectivité, ils introduisent en contrepartie des risques systémiques significatifs. Ces risques ne se limitent pas à l'intelligence artificielle : tout système algorithmique — qu'il repose sur des règles métier, des modèles statistiques ou des traitements automatisés — peut engendrer des biais décisionnels, une opacité des traitements, une fragmentation des responsabilités et une fragilité juridique face aux cadres réglementaires émergents.
+
+\vspace{0.3cm}
+\noindent\textbf{Problématique.} Les outils existants d'évaluation des risques algorithmiques sont fragmentés, souvent limités à un seul aspect (audit technique, conformité juridique, ou évaluation éthique) et ne permettent pas une vision intégrée couvrant l'observation, la mesure de maturité et la simulation d'impact. Comment concevoir une plateforme unifiée capable d'évaluer quantitativement les risques algorithmiques, de mesurer la maturité organisationnelle face à ces risques, et de simuler l'effet des mécanismes de mitigation ?
+
+\vspace{0.3cm}
+\noindent\textbf{Solution proposée.} Ce projet propose la plateforme \textbf{PAGe} (Plateforme de Gouvernance Algorithmique Publique), structurée autour de trois modules complémentaires :
+\begin{itemize}
+    \item \textbf{O-PAGe} (Observation) : identification et évaluation quantitative des risques à travers des indicateurs normalisés et des scores catégorisés ;
+    \item \textbf{M-PAGe} (Mitigation) : mesure du niveau de maturité organisationnelle via une agrégation multi-niveaux et des indices de conformité globale ;
+    \item \textbf{I-PAGe} (Impact) : simulation prospective de l'efficacité des mécanismes de mitigation sur l'évolution des indicateurs de risque.
+\end{itemize}
+
+\noindent L'architecture technique retenue repose sur un frontend React (TypeScript, Vite, Tailwind CSS), deux backends Django REST Framework, une base de données PostgreSQL, et une orchestration via Docker Compose. Cette architecture garantit la modularité, l'isolation multi-projets et la scalabilité de la solution.
+
+\vspace{0.3cm}
+\noindent\textbf{Organisation du rapport.} Ce rapport s'articule en quatre chapitres :
+\begin{itemize}
+    \item Le \textbf{Chapitre 1} présente le contexte général du projet, la problématique, les objectifs, la méthodologie adoptée et la planification ;
+    \item Le \textbf{Chapitre 2} détaille le cadre conceptuel et méthodologique, incluant les formules mathématiques des trois modules ;
+    \item Le \textbf{Chapitre 3} expose l'analyse et la conception : acteurs, cas d'utilisation, diagrammes de classes et architecture technique ;
+    \item Le \textbf{Chapitre 4} présente la réalisation de l'application, les technologies utilisées et les interfaces développées pour chaque rôle utilisateur.
+\end{itemize}
