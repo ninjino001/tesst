@@ -841,3 +841,84 @@ Setup VirtualBox :
 - Finaliser le rapport
 
 *Fin de l'historique — Sessions du 18-19/08/2026*
+
+
+
+---
+
+## SESSION 5 — 21 Août 2026
+
+### Rapport de stage AIMOS — Création complète
+
+**Contexte** : Le développement est terminé. Cette session est dédiée à la préparation du rapport de stage et des diagrammes.
+
+**Type de rapport** : Rapport de Stage de Fin d'Études (individuel, pas en binôme comme le PFA précédent).
+
+**Encadrant professionnel** : Mr. Ahmed BEKRI (ONDA)
+
+### Diagrammes PlantUML créés
+
+**Dossier** : `docs/diagrams/`
+
+| Fichier | Contenu |
+|---------|---------|
+| `uc_module1_administration.puml` | UC Module Administration (Admin + Utilisateur) |
+| `uc_module2_maintenance.puml` | UC Module Gestion de la Maintenance (Resp. maint + Technicien) |
+| `uc_module3_surveillance.puml` | UC Module Surveillance & Alertes (Système + Resp. maint + Superviseur) |
+| `uc_module4_ia.puml` | UC Module Maintenance Prédictive IA (Système + Resp. maint + Superviseur) |
+| `class_diagram_global.puml` | Diagramme de classes global (5 packages, 14 classes) |
+
+**Modules UC identifiés (4 modules principaux)** :
+1. Administration : S'authentifier, Gérer les utilisateurs et les rôles, Gérer son profil
+2. Gestion de la Maintenance : Équipements/capteurs, Interventions, Checklists, Demandes
+3. Surveillance & Alertes : Alertes automatiques, Traitement, Notifications, Dashboard
+4. Maintenance Prédictive (IA) : Analyse tendances, Score de risque/RUL, Prédictions
+
+### Rapport LaTeX créé
+
+**Dossier** : `rapport_aimos/`
+
+**Structure** :
+- `main.tex` — Page de garde (Stage, individuel, Ahmed Bekri)
+- `rapportENSIAS.cls` — Classe adaptée (footer "Rapport de Stage", "Réalisé par")
+- `sections/remerciements.tex` — Remerciements (Mr. Ahmed BEKRI + ONDA)
+- `sections/resume.tex` — Résumé FR (maintenance prédictive aéroport)
+- `sections/abstract.tex` — Abstract EN
+- `sections/liste_abreviations.tex` — Abréviations AIMOS (ONDA, IoT, RUL, GMAO, etc.)
+- `sections/introduction_generale.tex` — Problématique + plan du rapport
+- `sections/chapitre1.tex` — Contexte général du stage (problématique, objectifs, méthodologie, planning)
+- `sections/chapitre2.tex` — Présentation de l'organisme d'accueil (ONDA, aéroport Rabat-Salé, écosystème SI)
+- `sections/chapitre3.tex` — Analyse et Conception (besoins, acteurs, UC avec descriptions, classes, architecture, RBAC)
+- `sections/chapitre4.tex` — Réalisation (technologies, interfaces par rôle, module IA, déploiement)
+- `sections/conclusion_generale.tex` — Conclusion + perspectives (IoT réel, LSTM, mobile, Oracle EBS, multi-aéroports)
+
+### Différences par rapport à l'ancien rapport (PFA PAGe)
+
+| Aspect | Ancien (PFA) | Nouveau (Stage) |
+|--------|-------------|-----------------|
+| Type | PFA (binôme) | Stage individuel |
+| Label page garde | "Élèves" | "Réalisé par" |
+| Footer | "Rapport PFA" | "Rapport de Stage" |
+| Chapitre 2 | Cadre conceptuel (formules) | Présentation ONDA |
+| Encadrant | Pr. B. BOUNABAT | Mr. Ahmed BEKRI |
+| Projet | PAGe Platform | AIMOS |
+
+### Taille du rapport
+
+- Nouveau : ~901 lignes (~25-28 pages estimées)
+- Ancien : ~1394 lignes (~40-45 pages estimées)
+- **Écart : ~493 lignes à combler** (tableaux UC supplémentaires, étoffer ONDA, diagrammes de séquence, état de l'art)
+
+### Prochaines étapes
+
+- Étoffer le rapport pour atteindre ~40 pages :
+  - Ajouter tableaux description UC manquants
+  - Étoffer chapitre 2 (ONDA)
+  - Ajouter diagrammes de séquence
+  - Ajouter état de l'art (GMAO existantes)
+- Copier logos dans `rapport_aimos/Logos/`
+- Générer PNG des diagrammes PlantUML → `rapport_aimos/figures/`
+- Prendre captures d'écran → `rapport_aimos/Interfaces/`
+- Importer sur Overleaf pour compiler
+
+*Fin de l'historique — Session du 21/08/2026*
